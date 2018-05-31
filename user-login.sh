@@ -50,12 +50,12 @@ do
 	fi
 done
 
-echo "";
+#echo "";
 
-echo "-----------------------------------"
-echo "Checking OpenVPN login" | lolcat;
-echo "-----------------------------------"
-tail -f /etc/openvpn/server-vpn.log
+#echo "-----------------------------------"
+#echo "Checking OpenVPN login" | lolcat;
+#echo "-----------------------------------"
+#tail -f /etc/openvpn/server-vpn.log
 
 echo "";
 
@@ -66,7 +66,7 @@ last | grep ppp | grep still
 
 echo "";
 
-#History Login User
+#Melihat Riwayat Login User
 echo "----------------------------------------------"
 echo "Checking PPTP Login History" | lolcat;
 echo "----------------------------------------------"
@@ -79,8 +79,7 @@ echo " Tetap Multi Login Ganti Passnya baru Kill Lagi " | lolcat
 echo " Caranya pake Kill nomor PID " | lolcat
 echo "----------------------------------------------------------------"
 
-	echo "          DEVELOPED BY VPN989 " | lolcat
+	echo " DEVELOPED BY BorneoVpsHosting atau (+60138733203) "| lolcat
 echo "----------------------------------------------------------------"
 echo ""
-
 
