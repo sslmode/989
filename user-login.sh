@@ -1,3 +1,5 @@
+
+
 #!/bin/bash
 
 if [[ $USER != 'root' ]]; then
@@ -66,7 +68,7 @@ last | grep ppp | grep still
 
 echo "";
 
-#Melihat Riwayat Login User
+#History Login User
 echo "----------------------------------------------"
 echo "Checking PPTP Login History" | lolcat;
 echo "----------------------------------------------"
@@ -79,7 +81,10 @@ echo " Tetap Multi Login Ganti Passnya baru Kill Lagi " | lolcat
 echo " Caranya pake Kill nomor PID " | lolcat
 echo "----------------------------------------------------------------"
 
-	echo " DEVELOPED BY BorneoVpsHosting atau (+60138733203) "| lolcat
+	echo "          DEVELOPED BY VPN989 " | lolcat
 echo "----------------------------------------------------------------"
 echo ""
+
+
+
 
