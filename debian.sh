@@ -121,14 +121,15 @@ wget -O /etc/openvpn/client.ovpn "https://raw.githubusercontent.com/Mbah-Shondon
 sed -i $MYIP2 /etc/openvpn/client.ovpn;
 cp client.ovpn /home/vps/public_html/
 
-# install badvpn
-wget -O /usr/bin/badvpn-udpgw $source/badvpn-udpgw
-if [[ $OS == "x86_64" ]]; then
-wget -O /usr/bin/badvpn-udpgw $source/badvpn-udpgw64"
-fi
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
-chmod +x /usr/bin/badvpn-udpgw
-screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
+# Install BadVPN
+apt-get -y install cmake make gcc
+wget http://borneovpshosting.com/autoscript/debian7/badvpn-1.999.127.tar.bz2
+tar xf badvpn-1.999.127.tar.bz2
+mkdir badvpn-build
+cd badvpn-build
+cmake ~/badvpn-1.999.127 -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
+make install
+screen badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &
 cd
 
 # Install Mrtg
@@ -194,9 +195,9 @@ sed -i '/SixXS IPv6/d' config.php
 cd
 
 #if [[ $ether = "eth0" ]]; then
-#	wget -O /etc/iptables.conf $source/iptables.up.rules.eth0
+#	wget -O /etc/iptables.conf $source/Debian7/iptables.up.rules.eth0
 #else
-#	wget -O /etc/iptables.conf $source/iptables.up.rules.venet0
+#	wget -O /etc/iptables.conf $source/Debian7/iptables.up.rules.venet0
 #fi
 
 #sed -i $MYIP2 /etc/iptables.conf;
@@ -219,9 +220,8 @@ cd
 #sed -i '$ i\iptables -A OUTPUT -p tcp -m tcp --dport 8000 -j ACCEPT' /etc/rc.local
 #sed -i '$ i\iptables -A OUTPUT -p tcp -m tcp --dport 8080 -j ACCEPT' /etc/rc.local
 #sed -i '$ i\iptables -A OUTPUT -p tcp -m tcp --dport 10000 -j ACCEPT' /etc/rc.local
-#sed -i '$ i\iptables -A OUTPUT -p tcp -m tcp --dport 55 -j ACCEPT' /etc/rc.local
-#sed -i '$ i\iptables -A OUTPUT -p udp -m udp --dport 2500 -j ACCEPT' /etc/rc.local
 #sed -i '$ i\iptables -A OUTPUT -p udp -m udp --dport 53 -j ACCEPT' /etc/rc.local
+#sed -i '$ i\iptables -A OUTPUT -p udp -m udp --dport 2500 -j ACCEPT' /etc/rc.local
 #sed -i '$ i\iptables -A OUTPUT -p udp -m udp -j DROP' /etc/rc.local
 #sed -i '$ i\iptables -A OUTPUT -p tcp -m tcp -j DROP' /etc/rc.local
 
